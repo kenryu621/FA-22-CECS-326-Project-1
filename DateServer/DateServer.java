@@ -13,7 +13,7 @@ public class DateServer {
                 // Accept client
                 Socket client = sock.accept();
                 // Send message to client
-                PrintWriter pout = new PrintWriter(client.getOutputStream());
+                PrintWriter pout = new PrintWriter(client.getOutputStream(), true);
 
                 /**
                  * Code not in used
@@ -52,7 +52,6 @@ public class DateServer {
                 }
                 // Send quote of the day to the client
                 pout.println(quote);
-                pout.flush();
                 // Close socket and resume
                 client.close();
             }
