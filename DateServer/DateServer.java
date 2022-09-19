@@ -4,16 +4,14 @@ import java.time.LocalDate;
 import java.time.DayOfWeek;
 
 public class DateServer {
-    public static void main(String[] args){
-        try{
-            // Creating Server socket
-            ServerSocket sock = new ServerSocket(6017);
+    public static void main(String[] args) {
+        try (ServerSocket serverSock = new ServerSocket(6017)) { // Creating Server socket
             // Listen for connections
-            while(true){
+            while (true) {
                 // Accept client
-                Socket client = sock.accept();
+                Socket clientSock = serverSock.accept();
                 // Send message to client
-                PrintWriter pout = new PrintWriter(client.getOutputStream(), true);
+                PrintWriter pout = new PrintWriter(clientSock.getOutputStream(), true);
 
                 /**
                  * Code not in used
@@ -24,7 +22,7 @@ public class DateServer {
                 // Quote of the day
                 String quote = new String();
                 DayOfWeek today = LocalDate.now().getDayOfWeek();
-                switch(today.getValue()){
+                switch (today.getValue()) {
                     case 1:
                         quote = "\"I am a part of everything that I have read.\" - Theodore Roosevelt";
                         break;
@@ -52,11 +50,10 @@ public class DateServer {
                 }
                 // Send quote of the day to the client
                 pout.println(quote);
-                // Close socket and resume
-                client.close();
+                // Close socket then resume the loop
+                clientSock.close();
             }
-        }
-        catch(IOException ioe){
+        } catch (IOException ioe) { // Print error message
             System.err.println(ioe);
         }
     }
