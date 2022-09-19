@@ -8,5 +8,16 @@ import java.io.*;
 
 public class QuoteClient
 {
-	//Your code is here
+    public static void main(String[] args) throws IOException {
+            Socket s = new Socket("localhost",6013);
+
+
+            InputStreamReader in = new InputStreamReader(s.getInputStream());
+            BufferedReader bf = new BufferedReader(in);
+
+            String str = bf.readLine();
+            System.out.println("The quote of the day is: \n" + str);
+
+
+    }
 }
