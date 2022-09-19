@@ -15,10 +15,11 @@ public class DateServer {
                 // Send message to client
                 PrintWriter pout = new PrintWriter(client.getOutputStream());
 
-                /* Code not in used
-                * //Message containing date
-                * pout.println(new java.util.Date().toString());
-                */
+                /**
+                 * Code not in used
+                 * // Message containing date
+                 * pout.println(new java.util.Date().toString());
+                 */
 
                 // Quote of the day
                 String quote = new String();
