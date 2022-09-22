@@ -5,8 +5,9 @@ public class EchoServer {
     public static void main(String[] args) {
         try (ServerSocket serverSock = new ServerSocket(6007)) { // Creating server stocket
             // Accepts client connection
+            System.out.println("Listening for connections.");
             Socket clientSock = serverSock.accept();
-            System.out.println("Connected to the client.");
+            System.out.println("Client connected.");
             // Creating server output communication
             PrintWriter serverOutput = new PrintWriter(clientSock.getOutputStream(), true);
             // Creating client input communication
@@ -14,6 +15,7 @@ public class EchoServer {
             String clientInputLine;
             // Echo the message from client until the client has disconnected
             while ((clientInputLine = clientReader.readLine()) != null) {
+                System.out.println("Client: " + clientInputLine);
                 serverOutput.println(clientInputLine.replaceAll("(?i)client", "server"));
             }
             // Prompt the status of the client
@@ -21,6 +23,7 @@ public class EchoServer {
             // Close the socket and server socket on exit
             clientSock.close();
             serverSock.close();
+            System.out.println("Socket is closed");
         } catch (IOException ioe) { // Print error message
             System.err.println(ioe);
         }

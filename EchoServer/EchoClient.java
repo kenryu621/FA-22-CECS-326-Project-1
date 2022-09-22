@@ -18,22 +18,19 @@ public class EchoClient {
                 // Prompt the user for String input
                 System.out.print("Client: ");
                 terminalInput = terminalReader.readLine();
-                // Send the String input to the server
-                clientInput.println(terminalInput);
-                // Read server's String output
-                serverOutput = serverReader.readLine();
-                System.out.println("Server: " + serverOutput);
-                // Ask if user want to continue the communnication with the server
-                System.out.print("Do you want to continue? [ Y / N ] ");
-                terminalInput = terminalReader.readLine();
-                // Check for invalid input from user
-                while (!terminalInput.equalsIgnoreCase("Y") && !terminalInput.equalsIgnoreCase("N")) {
-                    System.out.print("Invalid input, please try again! [ Y / N ] ");
-                    terminalInput = terminalReader.readLine();
+                // Send out message if the message is not "exit"
+                // Print out the response from server
+                if (!terminalInput.equalsIgnoreCase("exit")) {
+                    // Send the String input to the server
+                    clientInput.println(terminalInput);
+                    // Read server's String output
+                    serverOutput = serverReader.readLine();
+                    System.out.println("Server: " + serverOutput);
                 }
-            } while (terminalInput.equalsIgnoreCase("Y")); // Loop the instructions as long as user want to continue
+            } while (!terminalInput.equalsIgnoreCase("exit")); // Loop the instructions as long as no "exit" input
             // Close the socket on exit
             serverSock.close();
+            System.out.println("Server closing...");
         } catch (IOException ioe) { // Print error message
             System.err.println(ioe);
         }
