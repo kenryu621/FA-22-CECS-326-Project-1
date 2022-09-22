@@ -1,3 +1,12 @@
+
+/**
+ * Author: Kenry Yu, Diego Garcia
+ * Organization: California State University Long Beach
+ * Class section: Fall 2022 CECS 326 Section 2
+ * Due date: September 29, 2022
+ * Group Project 1: Warm up of Interprocess Communication
+ */
+
 import java.net.*;
 import java.io.*;
 
